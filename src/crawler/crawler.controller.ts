@@ -12,23 +12,23 @@ export class CrawlerController {
     return this.crawlerService.create(createCrawlerDto);
   }
 
-  @Get()
-  findAll() {
-    return this.crawlerService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.crawlerService.findAll();
+  // }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.crawlerService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.crawlerService.findOne(+id);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCrawlerDto: UpdateCrawlerDto) {
-    return this.crawlerService.update(+id, updateCrawlerDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateCrawlerDto: UpdateCrawlerDto) {
+  //   return this.crawlerService.update(+id, updateCrawlerDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.crawlerService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.crawlerService.remove(+id);
+  // }
 }
