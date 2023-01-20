@@ -9,20 +9,25 @@ export class CrawlerService {
     const pathUrl = 'https://devgo.com.br/';
     const clickMe = '.css-ici6m2';
 
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({ headless: false });
 
     const page = await browser.newPage();
-    console.log('page started')
+    page.setDefaultNavigationTimeout(0);
+    console.log('page started');
     await page.goto(pathUrl, {
-      waitUntil: 'networkidle2'
+      waitUntil: 'networkidle2',
     });
-    console.log('in the page')
-    await page.click(clickMe);
-    '.blog-article-card'
+    console.log('in the page');
+    await page.waitForSelector(clickMe);
+    page.click(clickMe)
 
-
-
-
+    await Promise.all([page.waitForNavigation(), page.click(clickMe), console.log('click done')]);
+    const allPostsLinks = await page.$$eval(
+      '.blog-article-card > a',
+      (arrayOfLinks) => arrayOfLinks.map((link) => link.href)
+    );
+    console.log('promise resolved');
+    console.log(allPostsLinks);
 
     // await browser.close();
 
