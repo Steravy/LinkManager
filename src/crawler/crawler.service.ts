@@ -18,6 +18,8 @@ export class CrawlerService {
     });
     console.log('in the page')
     await page.click(clickMe);
+    '.blog-article-card'
+
 
 
 
