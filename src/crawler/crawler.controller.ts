@@ -7,9 +7,9 @@ import { UpdateCrawlerDto } from './dto/update-crawler.dto';
 export class CrawlerController {
   constructor(private readonly crawlerService: CrawlerService) {}
 
-  @Post()
-  create(@Body() createCrawlerDto: CreateCrawlerDto) {
-    return this.crawlerService.create(createCrawlerDto);
+  @Get()
+  getDataWithPuppeteer() {
+    return this.crawlerService.getDataWithPuppeteer();
   }
 
   // @Get()
