@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateCrawlerDto } from './dto/create-crawler.dto';
 import { UpdateCrawlerDto } from './dto/update-crawler.dto';
 
+
 @Injectable()
 export class CrawlerService {
   create(createCrawlerDto: CreateCrawlerDto) {
