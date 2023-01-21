@@ -19,7 +19,6 @@ export class CrawlerService {
     });
     console.log('in the page');
     await page.waitForSelector(clickMe);
-    page.click(clickMe)
 
     await Promise.all([page.waitForNavigation(), page.click(clickMe), console.log('click done')]);
     const allPostsLinks = await page.$$eval(
