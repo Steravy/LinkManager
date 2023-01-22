@@ -7,7 +7,7 @@ import puppeteer from 'puppeteer';
 export class CrawlerService {
   async getDataWithPuppeteer() {
     const pathUrl = 'https://devgo.com.br/';
-    const clickMe = '.css-ici6m2';
+    const loadMore = '.css-ici6m2';
 
     const browser = await puppeteer.launch({ headless: false });
 
@@ -17,20 +17,32 @@ export class CrawlerService {
     await page.goto(pathUrl, {
       waitUntil: 'networkidle2',
     });
-    console.log('in the page');
-    await page.waitForSelector(clickMe);
 
-    await Promise.all([page.waitForNavigation(), page.click(clickMe), console.log('click done')]);
-    const allPostsLinks = await page.$$eval(
-      '.blog-article-card > a',
-      (arrayOfLinks) => arrayOfLinks.map((link) => link.href)
-    );
-    console.log('promise resolved');
-    console.log(allPostsLinks);
+    let allPostsLinks = [];
 
-    // await browser.close();
+    while (allPostsLinks.length <= 20) {
+      // await page.waitForSelector(loadMore)
+      allPostsLinks = await page.$$eval(
+        '.blog-article-card > a',
+        (arrayOfLinks) => arrayOfLinks.map((link) => link.href),
+      );
 
-    return 'This action adds a new crawler';
+      console.log('in the page');
+
+      if (allPostsLinks.length < 15) {
+        await Promise.all([
+          await page.click(loadMore),
+          await page.waitForSelector('.blog-article-card > a'),
+        ]);
+      }
+
+      console.log('promise resolved');
+      console.log(allPostsLinks);
+
+      // await browser.close();
+
+      return 'This action adds a new crawler';
+    }
   }
 
   // findAll() {

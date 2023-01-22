@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { CrawlerService } from './crawler.service';
 import { CreateCrawlerDto } from './dto/create-crawler.dto';
 import { UpdateCrawlerDto } from './dto/update-crawler.dto';
+import { CrawlerService } from './testCrawler.service';
 
 @Controller('crawler')
 export class CrawlerController {
